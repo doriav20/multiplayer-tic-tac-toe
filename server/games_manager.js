@@ -140,4 +140,8 @@ const getGameId = (socket) => {
     return playersInGame[socketId];
 };
 
-module.exports = { startGame, getBoard, isInGame, disconnectFromGame, updateBoard, getGameId };
+const isGameInProgress = (gameId) => {
+    return games[gameId].inProgress;
+};
+
+module.exports = { startGame, getBoard, isInGame, disconnectFromGame, updateBoard, getGameId, isGameInProgress };

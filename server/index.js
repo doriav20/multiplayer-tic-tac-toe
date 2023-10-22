@@ -2,7 +2,15 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const { Server } = require('socket.io');
-const { startGame, isInGame, getBoard, disconnectFromGame, updateBoard, getGameId } = require('./games_manager');
+const {
+    startGame,
+    isInGame,
+    getBoard,
+    disconnectFromGame,
+    updateBoard,
+    getGameId,
+    isGameInProgress,
+} = require('./games_manager');
 const cors = require('cors');
 const { numberOfRows, numberOfColumns } = require('./tic_tac_toe_manager');
 const port = 3001;
@@ -50,10 +58,13 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log(`User disconnected: ${socketId}`);
         if (isInGame(socket)) {
+            const gameInProgress = isGameInProgress(getGameId(socket));
             const gameId = disconnectFromGame(socket);
             const room = gameIdToRoom(gameId);
             socket.disconnect(true);
-            io.to(room).emit('opponent_disconnected');
+            if (gameInProgress) {
+                io.to(room).emit('opponent_disconnected');
+            }
         }
     });
 });
