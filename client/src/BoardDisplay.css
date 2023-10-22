@@ -1,0 +1,73 @@
+:root {
+    --primary-bg-color: #333333;
+    --secondary-bg-color: #555555;
+    --hover-bg-color: #777777;
+    --active-bg-color: #999999;
+    --text-color: #ffffff;
+    --text-size: 20px;
+    --cell-size: 100px;
+}
+
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.cell {
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    font-size: var(--text-size);
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    margin: 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: var(--cell-size);
+    height: var(--cell-size);
+}
+
+.cell:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.cell:active {
+    background-color: var(--active-bg-color);
+}
+
+.start-game-button {
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    font-size: var(--text-size);
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: calc(var(--cell-size) * 2);
+    height: calc(var(--cell-size) * 0.5);
+}
+
+.start-game-button:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.start-game-button:active {
+    background-color: var(--active-bg-color);
+}
+
+.game-status {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.game-status p {
+    color: var(--text-color);
+    font-size: calc(var(--text-size) * 1.2);
+    margin: 0;
+    font-weight: bold;
+}
