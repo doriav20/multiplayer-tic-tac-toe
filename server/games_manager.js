@@ -128,6 +128,9 @@ const disconnectFromGame = (socket) => {
     const gameId = playersInGame[socketId];
     delete playersInGame[socketId];
     games[gameId].inProgress = false;
+    if (pendingGameId === gameId) {
+        pendingGameId = null;
+    }
     console.log(`${socketId} disconnected from game ${gameId}`);
     return gameId;
 };
