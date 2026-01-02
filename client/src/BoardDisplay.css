@@ -60,6 +60,36 @@
     background-color: var(--active-bg-color);
 }
 
+.player-name-input {
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    font-size: calc(var(--text-size) * 0.9);
+    font-weight: bold;
+    border: none;
+    padding: 10px 12px;
+    margin: 20px 2px;
+    border-radius: 3px;
+    width: calc(var(--cell-size) * 1.5);
+    height: calc(var(--cell-size) * 0.3);
+    outline: none;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.player-name-input::placeholder {
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.player-name-input:focus {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 0 0 2px var(--active-bg-color);
+}
+
+.player-name-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .game-status {
     text-align: center;
     margin: 20px auto;
