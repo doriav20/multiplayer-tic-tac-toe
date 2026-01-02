@@ -1,5 +1,5 @@
-const numberOfRows = 3;
-const numberOfColumns = 3;
+const numberOfRows = parseInt(process.env.TIC_TAC_TOE_ROWS) || 3;
+const numberOfColumns = parseInt(process.env.TIC_TAC_TOE_COLUMNS) || 3;
 
 const generateEmptyBoard = () => Array.from({ length: numberOfRows }, () => Array(numberOfColumns).fill(null));
 
