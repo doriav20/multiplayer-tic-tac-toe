@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
         socket.emit('board_updated', { board: getBoard(socket) });
     }
 
-    socket.on('start_game', ({ playerName }) => {
+    socket.on('start_game', ({ playerName } =  {}) => {
         const { gameId, readyToStart, player1, player1Name, player2, player2Name } = startGame(socket, playerName);
         const room = gameIdToRoom(gameId);
         socket.join(room);

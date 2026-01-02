@@ -23,6 +23,7 @@ function useTicTacToe() {
     const [board, setBoard] = useState(null);
     const [numberOfRows, setNumberOfRows] = useState(0);
     const [numberOfColumns, setNumberOfColumns] = useState(0);
+    const [opponentName, setOpponentName] = useState('');
     const [player, setPlayer] = useState(null);
     const [gameStatus, setGameStatus] = useState(GameStatus.READY_TO_START);
     const [inGameStatus, setInGameStatus] = useState(null);
@@ -51,7 +52,7 @@ function useTicTacToe() {
         setGameStatus(GameStatus.WAITING_FOR_OPPONENT);
     }
 
-    function handleGameStarted({ player1, player2, numberOfRows, numberOfColumns }) {
+    function handleGameStarted({ player1, player1Name, player2, player2Name, numberOfRows, numberOfColumns }) {
         setGameStatus(GameStatus.IN_PROGRESS);
         setNumberOfRows(numberOfRows);
         setNumberOfColumns(numberOfColumns);
@@ -59,9 +60,11 @@ function useTicTacToe() {
         if (socket.id === player1) {
             setPlayer('X');
             setInGameStatus(InGameStatus.YOUR_TURN);
+            setOpponentName(player2Name);
         } else if (socket.id === player2) {
             setPlayer('O');
             setInGameStatus(InGameStatus.OPPONENT_TURN);
+            setOpponentName(player1Name);
         } else {
             console.error('Something went wrong');
             return;
@@ -113,7 +116,7 @@ function useTicTacToe() {
         };
     }, [socket]);
 
-    return { board, handleClick, numberOfRows, numberOfColumns, startGame, gameStatus, inGameStatus };
+    return { board, handleClick, numberOfRows, numberOfColumns, startGame, gameStatus, inGameStatus, opponentName};
 }
 
 export default useTicTacToe;

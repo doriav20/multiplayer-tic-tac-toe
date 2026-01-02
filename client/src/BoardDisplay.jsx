@@ -2,7 +2,7 @@ import './BoardDisplay.css';
 import useTicTacToe, { GameStatus } from './useTicTacToe';
 
 function BoardDisplay() {
-    const { board, handleClick, numberOfColumns, startGame, gameStatus, inGameStatus } = useTicTacToe();
+    const { board, handleClick, numberOfColumns, startGame, gameStatus, inGameStatus, opponentName } = useTicTacToe();
 
     if (gameStatus === GameStatus.WAITING_FOR_OPPONENT) {
         return (
@@ -40,6 +40,12 @@ function BoardDisplay() {
             <div>
                 <BoardComponent />
             </div>
+            {opponentName && (
+                <div className="game-status">
+                    <p>Opponent: {opponentName}</p>
+                </div>
+            )
+            }
             {readyToStart && (
                 <div>
                     <button className="start-game-button" onClick={startGame}>
