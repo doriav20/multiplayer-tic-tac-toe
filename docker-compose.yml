@@ -1,6 +1,9 @@
 services:
   backend:
     build: ./server
+    environment:
+      - TIC_TAC_TOE_ROWS=3
+      - TIC_TAC_TOE_COLUMNS=3
     ports:
       - "3001:3001"
 
