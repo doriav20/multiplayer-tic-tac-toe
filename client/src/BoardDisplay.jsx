@@ -1,6 +1,7 @@
 import './BoardDisplay.css';
 import useTicTacToe, { GameStatus } from './useTicTacToe';
 import { useState } from "react";
+import PlayerNameInput from "./PlayerNameInput";
 
 function BoardDisplay() {
     const { board, handleClick, numberOfColumns, startGame, gameStatus, inGameStatus, opponentName } = useTicTacToe();
@@ -50,17 +51,17 @@ function BoardDisplay() {
             )
             }
             {readyToStart && (
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Enter your name"
-                        value={playerName}
-                        onChange={(e) => setPlayerName(e.target.value)}
-                    />
-                    <button className="start-game-button" onClick={() => startGame(playerName)}>
-                        Start Game
-                    </button>
-                </div>
+                <>
+                    <div>
+                        <button className="start-game-button" onClick={() => startGame(playerName)}>
+                            Start Game
+                        </button>
+                    </div>
+                    <div>
+                        <PlayerNameInput className="player-name-input" value={playerName} onChange={setPlayerName}
+                                         placeholder={"Anonymous"}/>
+                    </div>
+                </>
             )}
         </>
     );
