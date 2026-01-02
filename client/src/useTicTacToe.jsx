@@ -47,8 +47,8 @@ function useTicTacToe() {
         sendClickToServer(i, j);
     }
 
-    function startGame() {
-        socket.emit('start_game');
+    function startGame(playerName) {
+        socket.emit('start_game', { playerName });
         setGameStatus(GameStatus.WAITING_FOR_OPPONENT);
     }
 
