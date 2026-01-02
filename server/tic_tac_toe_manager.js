@@ -26,8 +26,8 @@ const checkColumnsWin = (board) => {
                 return firstCell;
             }
         }
-        return null;
     }
+    return null;
 };
 
 const checkTopLeftToBottomRightDiagonalWin = (board) => {
