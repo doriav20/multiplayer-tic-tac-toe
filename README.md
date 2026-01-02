@@ -25,7 +25,7 @@ The server will be listening on port `3001`.
 
 ## Client (Frontend)
 
-The frontend is a React application, providing users with an intuitive interface to play the game. It communicates with the server in real-time, ensuring a responsive game experience.
+The frontend is a React application built with Vite for fast development and optimized builds. It communicates with the backend in real time using socket.io-client, ensuring a responsive multiplayer experience.
 
 ### Setup
 
@@ -35,11 +35,25 @@ The frontend is a React application, providing users with an intuitive interface
 npm install
 ```
 
-### Running
+### Running (Development)
 
-Start the development server using the command:
+Start the Vite development server:
 ```
-npm start
+npm run dev
 ```
 
-The client will be accessible at `http://localhost:3000`.
+The client will be accessible at `http://localhost:5173`.
+
+### Build (Production)
+
+To create a production build:
+```
+npm run build
+```
+
+### Preview Production Build
+
+To locally preview the production build:
+```
+npm run preview
+```
