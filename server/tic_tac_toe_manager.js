@@ -78,7 +78,7 @@ const checkFinished = (board) => {
         return winner;
     }
     if (checkDraw(board)) {
-        return 'D';
+        return 'DRAW';
     }
     return null;
 };
