@@ -9,7 +9,9 @@ const initGame = () => {
     games[gameId] = {
         board: generateEmptyBoard(),
         player1: null,
+        player1Name: "Anonymous",
         player2: null,
+        player2Name: "Anonymous",
         turn: 1,
         inProgress: false,
     };
@@ -17,20 +19,22 @@ const initGame = () => {
     return gameId;
 };
 
-const assignSocketToGame = (gameId, socketId) => {
+const assignSocketToGame = (gameId, socketId, playerName) => {
     const game = games[gameId];
     if (!game.player1) {
         game.player1 = socketId;
+        game.player1Name = playerName || game.player1Name;
         playersInGame[socketId] = gameId;
     } else if (!game.player2) {
         game.player2 = socketId;
+        game.player2Name = playerName || game.player2Name;
         playersInGame[socketId] = gameId;
     } else {
         console.error('Game is full');
     }
 };
 
-const startGame = (socket) => {
+const startGame = (socket, playerName) => {
     const socketId = socket.id;
     const prevGameId = playersInGame[socketId];
 
@@ -54,9 +58,9 @@ const startGame = (socket) => {
         console.log(`${socketId} joined game ${gameId}, ready to start`);
     }
 
-    assignSocketToGame(gameId, socketId);
-    const { player1, player2 } = games[gameId];
-    return { gameId, readyToStart, player1, player2 };
+    assignSocketToGame(gameId, socketId, playerName);
+    const { player1, player1Name, player2, player2Name } = games[gameId];
+    return { gameId, readyToStart, player1, player1Name, player2, player2Name };
 };
 
 const getBoard = (socket) => {
